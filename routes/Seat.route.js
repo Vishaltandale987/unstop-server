@@ -151,6 +151,21 @@ Seat_Route.put("/cancel", async (req, res) => {
 
 });
 
+// reset  
+Seat_Route.get("/reset", async (req, res) => {
+
+   
+
+ 
+    try {
+        const user = await SeatModel.updateMany({},{ $set: { status: "available" } })
+        res.status(200).json("All bookings reset successfully ");
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+
+});
+
 
 Seat_Route.put("/id/:id", async (req, res) => {
 
